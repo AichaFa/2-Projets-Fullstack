@@ -1,8 +1,10 @@
 config/
+openweather.env
 
 # Ignorer les fichiers de secrets s'ils sont créés par erreur ici
 .env
 aws.env
+openweather.env
 
 # Ignorer les dossiers de cache
 __pycache__/
