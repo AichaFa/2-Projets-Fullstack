@@ -1,0 +1,9 @@
+config/
+
+# Ignorer les fichiers de secrets s'ils sont créés par erreur ici
+.env
+aws.env
+
+# Ignorer les dossiers de cache
+__pycache__/
+.ipynb_checkpoints/
