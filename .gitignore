@@ -3,7 +3,6 @@ config/
 *.mp4
 *.mov
 *.exe
-*.csv
 
 # Sécurité : NE JAMAIS SUPPRIMER CES LIGNES
 config/aws.env
@@ -18,6 +17,3 @@ venv/
 .venv/
 .ipynb_checkpoints/
 
-# Données (optionnel)
-# Si tes fichiers CSV sont très gros, tu peux aussi les ignorer
-*.csv
