@@ -31,6 +31,7 @@ Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai
 2-Steam/
 ├── Project_Steam_part1.html   - Notebook 1 : Analyse Macro
 ├── Project_Steam_part2.html   - Notebook 2 : Genres et Plateformes
+├── images/                    - Captures Databricks
 └── archive/                   - Fichiers de travail (ipynb)
 ```
 
@@ -47,8 +48,15 @@ Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai
 - [Notebook 2 - Databricks](https://dbc-d23f2ffb-9f5f.cloud.databricks.com/editor/notebooks/3659326689703959?o=7474656704147178#command/7337978027093036)
 
 > Note : les liens Databricks nécessitent un accès au workspace. Privilégier les fichiers HTML.
-### Apercu du schema des donnees dans Databricks
-![Schema Databricks](./images/databricks_schema.png)
+
+---
+
+## Apercu des notebooks dans Databricks
+
+![Notebook 1 - Analyse Macro](./images/Project_Steam_Part1.png)
+
+![Notebook 2 - Genres et Plateformes](./images/Project_Steam_Part2.png)
+
 ---
 
 ## Résultats clés
