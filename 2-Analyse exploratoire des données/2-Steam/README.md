@@ -36,6 +36,21 @@ Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai
 
 ---
 
+## Consulter les notebooks
+
+### Fichiers HTML (recommandé)
+- [Notebook 1 - Analyse Macro](./Project_Steam_part1.html)
+- [Notebook 2 - Genres et Plateformes](./Project_Steam_part2.html)
+
+### Liens Databricks (accès workspace personnel)
+- [Notebook 1 - Databricks](https://dbc-d23f2ffb-9f5f.cloud.databricks.com/editor/notebooks/3659326689703957?o=7474656704147178#command/7337978027093016)
+- [Notebook 2 - Databricks](https://dbc-d23f2ffb-9f5f.cloud.databricks.com/editor/notebooks/3659326689703959?o=7474656704147178#command/7337978027093036)
+
+> Note : les liens Databricks nécessitent un accès au workspace. Privilégier les fichiers HTML.
+### Apercu du schema des donnees dans Databricks
+![Schema Databricks](./images/databricks_schema.png)
+---
+
 ## Résultats clés
 
 ### Macro
@@ -69,10 +84,3 @@ Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai
 - **Plateforme** : Windows en priorité, Mac recommandé pour se différencier
 - **Prix** : Entre 10 et 20 euros - zone optimale du marché
 - **Langues** : EN + DE + FR + RU
-
----
-
-## Consulter les notebooks
-
-Les notebooks sont exportés en HTML et consultables directement sans installation.
-Pour réexécuter le code, importer les fichiers `.ipynb` du dossier `archive/` dans Databricks.
