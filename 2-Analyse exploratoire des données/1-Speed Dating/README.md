@@ -1,61 +1,61 @@
-# 💘 Speed Dating Analysis — What Sparks the Connection?
+# Speed Dating Analysis - Qu'est-ce qui déclenche l'étincelle ?
 
-Exploratory data analysis of the Columbia University speed dating experiment (2002–2004), applied to Tinder product strategy.
+Analyse exploratoire des données de l'expérience de speed dating de l'Université Columbia (2002-2004), appliquée à la stratégie produit de Tinder.
 
-## Context
+## Contexte
 
-Tinder's marketing team observed a decrease in matches and commissioned this study to understand **what makes people interested in each other**.  
-The dataset covers **8,378 speed dates** between participants who rated each other on 6 attributes and indicated whether they'd want a second date.
+L'équipe marketing de Tinder a observé une baisse du nombre de matchs et a commandé cette étude pour comprendre **ce qui attire les gens les uns vers les autres**.
+Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur 6 critères et ont indiqué s'ils souhaitaient un second rendez-vous.
 
 ## Dataset
 
-- **Source:** Columbia University Speed Dating Experiment (2002–2004)
-- **Rows:** 8,378 encounters (one row = one speed date between two people)
-- **Columns:** 195 variables (demographics, self-perception, ratings, lifestyle)
-- **Target variable:** `match` — 1 if both agreed to a second date (avg. rate: **16%**)
+- **Source :** Columbia University Speed Dating Experiment (2002-2004)
+- **Lignes :** 8 378 rencontres (une ligne = un speed date entre deux personnes)
+- **Colonnes :** 195 variables (démographie, auto-perception, notes, style de vie)
+- **Variable cible :** `match` - 1 si les deux ont dit oui (taux moyen : **16%**)
 
-📥 [Download CSV](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data.csv) | [Data Dictionary](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data+Key.doc)
+[Download CSV](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data.csv) | [Data Dictionary](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data+Key.doc)
 
-## Research Questions
+## Questions de recherche
 
 | # | Question |
 |---|----------|
-| Q1 | What are the least desirable attributes in a partner? Does this differ by gender? |
-| Q2 | How important do people *think* attractiveness is vs. its *real* impact? |
-| Q3 | Are shared interests more important than shared racial background? |
-| Q4 | Can people accurately predict their own perceived value on the dating market? |
-| Q5 | Is it better to be someone's first speed date of the night or their last? |
+| Q1 | Quels sont les critères les moins désirables chez un partenaire ? Cela diffère-t-il selon le genre ? |
+| Q2 | Quelle importance les gens accordent-ils à l'attractivité par rapport à son impact réel ? |
+| Q3 | Les intérêts communs comptent-ils plus que la même origine raciale ? |
+| Q4 | Les gens peuvent-ils estimer correctement leur valeur perçue sur le marché des rencontres ? |
+| Q5 | Vaut-il mieux être le premier ou le dernier speed date de la soirée ? |
 
-## Key Findings
+## Résultats clés
 
-- **Attractiveness dominates** (corr = 0.49): the strongest predictor of a yes, yet people under-report its importance (declared avg: 22.5/100). Classic social desirability bias.
-- **Humor and shared interests follow** (corr = 0.41 and 0.40): actionable signals for a matching algorithm.
-- **Shared interests beat shared race** by 3×: +3.3 pts of match rate vs. +1.0 pt.
-- **Self-perception is unreliable**: participants overestimate their attractiveness by +0.9 pt, sincerity by +1.1 pt. Correlation between self-rating and actual rating = **0.175**.
-- **Decision fatigue is real**: acceptance rate drops from 43.2% (early dates) to 39.6% (late dates) — a −3.6 pt penalty for being seen last.
+- **L'attractivité domine** (corr = 0.49) : le critère le plus prédictif, pourtant sous-déclaré (moyenne déclarée : 22.5/100). Biais de désirabilité sociale confirmé.
+- **L'humour et les intérêts communs suivent** (corr = 0.41 et 0.40) : des signaux actionnables pour un algorithme de matching.
+- **Les intérêts communs l'emportent sur l'origine raciale** par 3x : +3.3 pts de taux de match contre +1.0 pt.
+- **L'auto-perception est peu fiable** : surestimation de l'attractivité de +0.9 pt, de la sincérité de +1.1 pt. Corrélation auto-note / note réelle = **0.175**.
+- **La fatigue décisionnelle est réelle** : le taux d'acceptation passe de 43.2% (début de soirée) à 39.6% (fin de soirée), soit -3.6 pts pour les derniers partenaires rencontrés.
 
-## Recommendations for Tinder
+## Recommandations pour Tinder
 
-1. **Boost photo quality** — attractiveness is the #1 filter; help users pick their best photo.
-2. **Passion-based algorithm** — weight shared interest tags in matching (3× stronger signal than race).
-3. **Limit swipes per session** — combat decision fatigue by introducing daily limits or suggested breaks.
-4. **Profile calibration** — anonymized feedback helps users align expectations with market reality.
+1. **Valoriser la photo** - l'attractivité est le premier filtre ; aider les utilisateurs à choisir leur meilleure photo.
+2. **Algorithme Passions** - pondérer les tags d'intérêts dans le matching (signal 3x plus fort que l'origine raciale).
+3. **Limiter les swipes par session** - lutter contre la fatigue décisionnelle via une limite quotidienne ou des pauses suggérées.
+4. **Calibration de profil** - un feedback anonymisé aide les utilisateurs à aligner leurs attentes sur la réalité du marché.
 
-## Project Structure
+## Structure du projet
 
 ```
 .
-├── 01-Speed_Dating.ipynb       # Main analysis notebook (EDA + visualizations)
-├── Speed_Dating_Storytelling.pdf  # Executive presentation (5 slides)
+├── 01-Speed_Dating.ipynb          # Notebook d'analyse principal (EDA + visualisations)
+├── Speed_Dating_Storytelling.pdf  # Présentation executive (5 slides)
 └── README.md
 ```
 
 ## Stack
 
 - Python 3.10
-- pandas, numpy — data manipulation
-- matplotlib, seaborn — visualizations
+- pandas, numpy - manipulation des données
+- matplotlib, seaborn - visualisations
 
 ## Certification
 
-⚠️ This project is part of the mandatory deliverables for **Bloc #2** certification.
+Ce projet fait partie des livrables obligatoires pour la certification **Bloc #2**.
