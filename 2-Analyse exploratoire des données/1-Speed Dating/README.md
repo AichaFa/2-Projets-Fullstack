@@ -31,7 +31,7 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 - **L'attractivité domine** (corr = 0.49) : le critère le plus prédictif, pourtant sous-déclaré (moyenne déclarée : 22.5/100). Biais de désirabilité sociale confirmé.
 - **L'humour et les intérêts communs suivent** (corr = 0.41 et 0.40) : des signaux actionnables pour un algorithme de matching.
 - **Les intérêts communs l'emportent sur l'origine raciale** par 3x : +3.3 pts de taux de match contre +1.0 pt.
-- **L'auto-perception est peu fiable** : surestimation de l'attractivité de +0.9 pt, de la sincérité de +1.1 pt. Corrélation auto-note / note réelle = **0.175**.
+- **L'auto-perception est peu fiable** : surestimation de l'attractivité de +0.9 pt, de la sincérité de +1.13 pt. Corrélation auto-note / note réelle = **0.175**.
 - **La fatigue décisionnelle est réelle** : le taux d'acceptation passe de 43.2% (début de soirée) à 39.6% (fin de soirée), soit -3.6 pts pour les derniers partenaires rencontrés.
 
 ## Recommandations pour Tinder
@@ -52,9 +52,11 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 
 ## Stack
 
-- Python 3.10
-- pandas, numpy - manipulation des données
-- matplotlib, seaborn - visualisations
+![Python](https://img.shields.io/badge/Python_3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/matplotlib-11557c?style=for-the-badge&logo=python&logoColor=white)
+![Seaborn](https://img.shields.io/badge/seaborn-4c72b0?style=for-the-badge&logo=python&logoColor=white)
 
 ## Certification
 
