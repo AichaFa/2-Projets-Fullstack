@@ -2,7 +2,6 @@ config/
 
 *.mp4
 *.mov
-*.exe
 
 # Sécurité : NE JAMAIS SUPPRIMER CES LIGNES
 config/aws.env
