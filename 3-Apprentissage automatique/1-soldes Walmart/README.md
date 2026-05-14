@@ -71,13 +71,13 @@ Le fichier `Walmart_Store_sales.csv` doit se trouver dans le même répertoire q
 L'exploration des données comprend l'analyse des distributions, l'évolution temporelle des ventes, la comparaison par magasin et une heatmap de corrélation. Les étapes de prétraitement appliquées avec [pandas](https://pandas.pydata.org/) :
 
 - Les lignes où `Weekly_Sales` est manquant sont supprimées (pas d'imputation sur la variable cible)
-- La colonne `Date` est décomposée en quatre features numériques : `Year`, `Month`, `Day` et `DayOfWeek`
+- La colonne `Date` est décomposée en features numériques : `Year`, `Month` et `Day`. La feature `DayOfWeek` est écartée car constante (toutes les observations sont des vendredis - variance nulle)
 - Les outliers hors de la plage [moyenne - 3 écarts-types, moyenne + 3 écarts-types] sont retirés pour `Temperature`, `Fuel_Price`, `CPI` et `Unemployment`
 
 Pipeline de prétraitement construit avec [scikit-learn](https://scikit-learn.org/) :
 
 - Les variables catégorielles (`Store`, `Holiday_Flag`) sont encodées avec `OneHotEncoder`
-- Les variables numériques sont normalisées avec `StandardScaler`
+- Les variables numériques sont normalisées avec `StandardScaler` : `Temperature`, `Fuel_Price`, `CPI`, `Unemployment`, `Year`, `Month`, `Day`
 
 ### Partie 2 - Régression linéaire
 
@@ -106,7 +106,22 @@ Le modèle Lasso obtient les meilleures performances en généralisation et effe
 - L'identifiant du magasin est de loin le facteur le plus déterminant sur les ventes
 - Les ventes affichent une tendance haussière d'une année sur l'autre
 - Un taux de chômage élevé est associé à des ventes plus faibles
-- Les semaines avec jours fériés génèrent en moyenne des ventes plus élevées
+- Une hausse de l'IPC (Indice des Prix à la Consommation) est associée à une baisse des ventes, traduisant une perte de pouvoir d'achat des consommateurs (corrélation la plus élevée parmi les indicateurs économiques : |r| = 0,287)
+- Les semaines avec jours fériés génèrent en moyenne 7,5 % de ventes supplémentaires
+
+---
+
+## Implications pour le service marketing
+
+Le modèle quantifie l'influence des indicateurs économiques et permet de formuler des recommandations opérationnelles directes :
+
+| Indicateur | Signal détecté | Recommandation |
+|------------|---------------|----------------|
+| **Holiday_Flag** | +7,5 % de ventes sur les semaines de fêtes | Concentrer les budgets promotionnels sur ces périodes ; planifier les campagnes en avance |
+| **CPI** | Coefficient négatif - hausse de l'IPC = baisse des ventes | Renforcer les offres de fidélisation et les promotions défensives lors des phases d'inflation |
+| **Unemployment** | Coefficient négatif - chômage élevé = ventes faibles | Adapter la stratégie promotionnelle par zone géographique ; intensifier les offres dans les bassins d'emploi fragilisés |
+
+> Aucun indicateur n'agit seul. Le modèle capture leur influence combinée : une campagne optimale devra croiser ces signaux simultanément.
 
 ---
 
