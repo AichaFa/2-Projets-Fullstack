@@ -57,7 +57,7 @@ pip install -r requirements.txt
 Ouvrir le notebook et exécuter toutes les cellules dans l'ordre :
 
 ```bash
-jupyter notebook Walmart_sales_solution.ipynb
+jupyter notebook Walmart_sales_Project.ipynb
 ```
 
 Le fichier `Walmart_Store_sales.csv` doit se trouver dans le même répertoire que le notebook.
@@ -96,6 +96,8 @@ Les modèles `Ridge` (pénalisation L2) et `Lasso` (pénalisation L1) sont entra
 | Régression Linéaire | 0.9865 | 0.9313 | 127 770 $ | 149 685 $ |
 | Ridge (alpha = 0.1) | 0.9821 | 0.9365 | 117 536 $ | 143 863 $ |
 | Lasso (alpha = 1000) | 0.9844 | 0.9438 | 114 353 $ | 135 369 $ |
+
+> *Résultats obtenus avec random_state=42. Les valeurs peuvent légèrement varier selon le volume de données après retrait des outliers.*
 
 Le modèle Lasso obtient les meilleures performances en généralisation et effectue une sélection automatique de variables en annulant les coefficients les moins pertinents.
 
