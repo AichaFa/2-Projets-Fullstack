@@ -1,5 +1,12 @@
 # Défi du Taux de Conversion - Data Science Weekly
 
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat-square&logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C9BE8?style=flat-square&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
+
 ## Contexte
 
 www.datascienceweekly.org est une newsletter hebdomadaire rédigée par des data scientists indépendants. N'importe qui peut s'inscrire sur le site en indiquant son adresse e-mail pour recevoir chaque semaine des actualités sur la science des données.
