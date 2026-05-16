@@ -1,4 +1,4 @@
-# The North Face — Commerce électronique : dynamiser les ventes en ligne
+# The North Face - Commerce électronique : dynamiser les ventes en ligne
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat-square&logo=jupyter&logoColor=white)
@@ -77,7 +77,7 @@ Clustering DBSCAN               Modélisation LSA
 
 ---
 
-## Partie 1 — Clustering DBSCAN
+## Partie 1 - Clustering DBSCAN
 
 L'algorithme **DBSCAN** (Density-Based Spatial Clustering of Applications with Noise) est appliqué sur la matrice TF-IDF avec la **distance cosinus**, particulièrement adaptée aux données textuelles.
 
@@ -109,7 +109,7 @@ Chaque nuage de mots révèle la thématique dominante d'un cluster : sous-vête
 
 ---
 
-## Partie 2 — Système de recommandation
+## Partie 2 - Système de recommandation
 
 La fonction `find_similar_items` exploite les clusters DBSCAN pour proposer les **5 produits les plus similaires** à un article donné, triés par **similarité cosinus décroissante** au sein du même cluster.
 
@@ -133,7 +133,7 @@ Une interface utilisateur interactive est disponible via `input()` dans le noteb
 
 ---
 
-## Partie 3 — Modélisation thématique (LSA)
+## Partie 3 - Modélisation thématique (LSA)
 
 L'**Analyse Sémantique Latente (LSA)** utilise `TruncatedSVD` pour extraire des thèmes latents dans les descriptions. Contrairement au clustering, un produit peut être associé à **plusieurs thèmes simultanément**.
 
