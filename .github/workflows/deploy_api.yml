@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - '5-Deploiement/getaround_project/api/**'
+      - '.github/workflows/deploy_api.yml'
 
 jobs:
   deploy:
@@ -12,8 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Push to Hugging Face
         env:
@@ -21,7 +20,16 @@ jobs:
         run: |
           git config --global user.email "204518881+AichaFa@users.noreply.github.com"
           git config --global user.name "AichaFa"
-          git remote add hf https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api
-          git subtree push --prefix 5-Deploiement/getaround_project/api hf main
-
           
+          # Clonage du Space dans un dossier temporaire
+          git clone https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api hf_space
+          
+          # Nettoyage et copie propre
+          find hf_space -maxdepth 1 -not -name 'hf_space' -not -name '.git' -exec rm -rf {} \;
+          cp -r 5-Deploiement/getaround_project/api/* hf_space/
+          
+          # Push linéaire classique
+          cd hf_space
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Deploy: Synchronisation automatique de l'API"
+          git push origin main
