@@ -32,6 +32,6 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -m "Deploy: Synchronisation automatique de l'API"
           git push origin main
-#lancement de l'application FastAPI avec Uvicorn, en écoutant sur toutes les interfaces réseau (0.0.0.0) et sur le port 7860.
+# Force build v5
 
 
