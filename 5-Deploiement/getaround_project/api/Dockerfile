@@ -24,5 +24,6 @@ COPY --chown=user ./best_model.joblib /app/best_model.joblib
 # 6. Exposition du port et lancement
 EXPOSE 7860
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+#lancement de l'application FastAPI avec Uvicorn, en écoutant sur toutes les interfaces réseau (0.0.0.0) et sur le port 7860.
 
 
