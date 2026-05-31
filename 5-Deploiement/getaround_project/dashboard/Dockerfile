@@ -1,16 +1,15 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-WORKDIR /code
+WORKDIR /app
 
-COPY requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Création du dossier data
-RUN mkdir -p /code/data
-
-# Code et données
-COPY ./dashboard.py /code/dashboard.py
-COPY ./data/get_around_delay_analysis.xlsx /code/data/get_around_delay_analysis.xlsx
+# Création du dossier data et copie
+RUN mkdir -p /app/data
+COPY ./dashboard.py /app/dashboard.py
+COPY ./data/get_around_delay_analysis.xlsx /app/data/get_around_delay_analysis.xlsx
 
 EXPOSE 7860
 
