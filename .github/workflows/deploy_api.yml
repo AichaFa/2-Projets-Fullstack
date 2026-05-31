@@ -21,9 +21,5 @@ jobs:
         run: |
           git config --global user.email "204518881+AichaFa@users.noreply.github.com"
           git config --global user.name "AichaFa"
-          
-          # Liaison sécurisée à ton Space Hugging Face
           git remote add hf https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api
-          
-          # Envoi ciblé du sous-dossier de l'API vers Hugging Face
-          git subtree push --prefix 5-Deploiement/getaround_project/api hf main --force
+          git subtree push --prefix 5-Deploiement/getaround_project/api hf main
