@@ -1,171 +1,145 @@
-# Projet Getaround - Analyse des retards et optimisation du prix
+# Plan your trip with Kayak
 
-## Présentation
+**Auteur :** Aïcha FATHELLAH  
+**Formation :** Fullstack Data Engineering — Jedha  
+**Certification :** CSDS (Concepteur et Développeur en Science des Données)
 
-Ce projet répond à une double problématique pour la plateforme de location de véhicules entre particuliers Getaround :
+---
 
-1. **Analyse des retards** : étudier l'impact des retours tardifs entre deux locations consécutives, et calibrer un seuil minimum de délai entre deux locations afin de réduire les frictions clients sans pénaliser les revenus des propriétaires.
-2. **Optimisation du prix** : construire un modèle de Machine Learning qui suggère le prix journalier optimal d'une location à partir des caractéristiques du véhicule, et l'exposer via une API documentée.
+## Description
 
-## Structure du dépôt
+Ce projet construit un pipeline ETL complet pour aider l'équipe marketing de [Kayak](https://www.kayak.com) à recommander les meilleures destinations de vacances en France.
+
+**Problématique :** 70 % des utilisateurs de Kayak souhaitent plus d'informations sur leur destination avant de réserver. L'objectif est de fournir une recommandation basée sur des données réelles de météo et de qualité hôtelière.
+
+**Résultat final :** deux cartes interactives affichant le Top 5 des destinations et le Top 20 des hôtels les mieux notés, alimentées par un pipeline de données automatisé.
+
+---
+
+## Architecture du pipeline
 
 ```
-getaround_project/
-├── api/                          # API FastAPI de prédiction
-│   ├── app.py                    # Code de l'API
-│   ├── best_model.joblib         # Modèle sérialisé
-│   ├── Dockerfile                # Image pour Hugging Face Spaces
-│   └── requirements.txt          # Dépendances
-├── dashboard/                    # Tableau de bord Streamlit
-│   ├── dashboard.py              # Application Streamlit
-│   ├── data/                     # Données de retards (xlsx)
-│   ├── Dockerfile                # Image pour Hugging Face Spaces
-│   └── requirements.txt          # Dépendances
-├── data/                         # Données sources
-│   ├── get_around_delay_analysis.xlsx
-│   └── get_around_pricing_project.csv
-├── figures/                      # Visualisations exportées
-├── models/                       # Modèle entraîné et résultats
-│   ├── best_model.joblib
-│   └── model_results.csv
-├── notebooks/                    # Notebook d'analyse complète
-│   └── analyse_getaround.ipynb
-├── mlruns/                       # Expériences MLflow
+Géocodage (Nominatim)
+        |
+        v
+API Météo (OpenWeatherMap)
+        |
+        v
+Scraping Hôtels (Booking.com / Selenium)
+        |
+        v
+Nettoyage & Scoring (Pandas)
+        |
+        v
+Data Lake (AWS S3)  -->  Data Warehouse (AWS RDS / PostgreSQL)
+        |
+        v
+Visualisation (Plotly Express / Mapbox)
+```
+
+---
+
+## Technologies utilisées
+
+| Catégorie | Technologie |
+|---|---|
+| Géocodage | Nominatim (OpenStreetMap) via `geopy` |
+| Données météo | API OpenWeatherMap (endpoint Forecast) |
+| Scraping | `Selenium` + `BeautifulSoup` (Chrome headless) |
+| Traitement des données | `Pandas`, `NumPy` |
+| Stockage Cloud | AWS S3 (Data Lake) via `boto3` |
+| Base de données | AWS RDS / PostgreSQL via `SQLAlchemy` |
+| Visualisation | `Plotly Express` (cartes Mapbox interactives) |
+| Sécurité | `python-dotenv` (variables d'environnement) |
+
+---
+
+## Structure du projet
+
+```
+Projet-Planifiez votre voyage avec Kayak/
+│
+├── 01-Plan_your_trip_with_Kayak_Projet.ipynb  # Notebook principal
+│
+├── config/                                     # Fichiers de configuration (non versionnés)
+│   ├── aws.env                                 # Clés AWS (non versionné)
+│   └── openweather.env                         # Clé API météo (non versionnée)
+│
+├── aws.env.example                             # Modèle de configuration AWS
+├── openweather.exemple                         # Modèle de configuration OpenWeather
+│
+├── villes_coords.csv                           # 35 villes + coordonnées GPS
+├── villes_meteo_coords.csv                     # Villes + données météo
+├── hotels_booking_35_villes.csv                # Données brutes hôtels (scraping)
+├── hotels_cleaned_full.csv                     # Données hôtels nettoyées
+├── villes_scores_aggregated.csv                # Score moyen par ville
+├── kayak_final_enriched_data.csv               # Dataset final (météo + hôtels + score)
+│
 └── README.md
 ```
 
-## Résultats principaux
+---
 
-### Analyse des retards
+## Résultats
 
-| Indicateur | Valeur |
-|---|---|
-| Locations totales analysées | 21 310 |
-| Taux d'annulation | 15,3% |
-| Restitutions en retard | 57,5% |
-| Délai médian au checkout | +9 min |
-| Locations chaînées | 8,6% (1 841) |
-| Cas problématiques (attente subie) | 12,6% des chaînages |
+### Top 5 des destinations — Meilleur compromis Météo / Hôtels
 
-**Recommandation principale** : un seuil de **120 minutes** appliqué à l'ensemble du parc résout 83% des cas problématiques pour un impact de moins de 3% sur le chiffre d'affaires. Une approche prudente alternative consiste à appliquer 60 minutes uniquement aux voitures Connect (impact CA < 1%).
+![Top 5 Destinations](images/top5_destinations.png)
 
-### Modèle de pricing
+### Top 20 des hôtels les mieux notés
 
-| Modèle | MAE (EUR) | RMSE (EUR) | R² |
-|---|---|---|---|
-| Régression linéaire | 11,58 | 15,81 | 0,766 |
-| Ridge | 11,56 | 15,79 | 0,766 |
-| Random Forest | 9,64 | 13,56 | 0,828 |
-| Gradient Boosting | 9,61 | 13,32 | 0,834 |
-| **XGBoost (retenu)** | **9,18** | **12,82** | **0,846** |
+![Top 20 Hotels](images/top20_hotels.png)
 
-Le modèle retenu est un XGBoost Regressor avec une MAE de 9,18 EUR sur le jeu de test, suffisamment précis pour suggérer un prix de référence aux propriétaires.
+---
 
-## Lancement local
+## Reproduire le projet
 
-Les scripts utilisent des chemins **portables** (relatifs au fichier source) : ils fonctionnent quel que soit votre répertoire courant ou votre système d'exploitation.
+### Prérequis
 
-### Sous Windows
+- Python 3.10+
+- Google Chrome installé
+- Un compte AWS (pour les étapes S3 et RDS)
+- Une clé API OpenWeatherMap (compte gratuit sur [openweathermap.org](https://openweathermap.org))
 
-Ouvrir un terminal PowerShell ou CMD et se placer dans le dossier du projet (adapter au chemin réel) :
-
-```powershell
-cd "C:\chemin\vers\getaround_project"
-```
-
-### API
+### Installation
 
 ```bash
-cd api
-pip install -r requirements.txt
-python app.py
+pip install selenium webdriver-manager boto3 sqlalchemy psycopg2-binary plotly geopy python-dotenv
 ```
 
-L'API est accessible sur `http://localhost:8000`, la documentation HTML sur `http://localhost:8000/docs` et l'interface OpenAPI alternative sur `http://localhost:8000/redoc`.
+### Configuration
 
-Exemple de requête sous Linux/macOS :
+Créer un dossier `config/` et y placer deux fichiers :
 
-```bash
-curl -X POST http://localhost:8000/predict \
-  -H "Content-Type: application/json" \
-  -d '{"input": [["Citroën", 140411, 100, "diesel", "black", "convertible", true, true, false, false, true, true, true]]}'
+**`config/openweather.env`**
+```
+OPENWEATHER_API_KEY=ta_cle_ici
 ```
 
-Sous Windows (PowerShell), il est recommandé d'utiliser `Invoke-RestMethod` :
-
-```powershell
-$body = @{ input = @(,@("Citroën", 140411, 100, "diesel", "black", "convertible", $true, $true, $false, $false, $true, $true, $true)) } | ConvertTo-Json -Compress -Depth 4
-Invoke-RestMethod -Uri http://localhost:8000/predict -Method POST -Body $body -ContentType "application/json"
+**`config/aws.env`**
+```
+AWS_ACCESS_KEY_ID=ta_cle_ici
+AWS_SECRET_ACCESS_KEY=ta_cle_secrete_ici
+S3_BUCKET_NAME=nom_de_ton_bucket
+AWS_REGION=eu-west-3
+RDS_USERNAME=admin
+RDS_PASSWORD=ton_mot_de_passe
+RDS_HOSTNAME=ton-instance.xxxx.eu-west-3.rds.amazonaws.com
+RDS_PORT=5432
+RDS_DB_NAME=postgres
 ```
 
-Réponse attendue : `{"prediction": [107.97]}`
+### Exécution
 
-### Dashboard
+Ouvrir `01-Plan_your_trip_with_Kayak_Projet.ipynb` et exécuter les cellules dans l'ordre.
 
-```bash
-cd dashboard
-pip install -r requirements.txt
-streamlit run dashboard.py
-```
+Les cellules 6 (S3) et 7 (RDS) nécessitent un compte AWS actif. Les autres cellules fonctionnent en local sans AWS.
 
-Le dashboard est accessible sur `http://localhost:8501`.
+---
 
-### Notebook
+## Points techniques notables
 
-Depuis la racine du projet ou depuis le dossier `notebooks/` :
-
-```bash
-jupyter notebook notebooks/analyse_getaround.ipynb
-```
-
-Le notebook détecte automatiquement le dossier `data/` quel que soit son emplacement d'ouverture (`./data`, `../data`, etc.).
-
-### Entraînement du modèle (régénération du fichier joblib)
-
-```bash
-python train_model.py
-```
-
-Le modèle est sauvegardé dans `models/best_model.joblib` et le pipeline est tracé dans `mlruns/`.
-
-### MLflow UI
-
-```bash
-mlflow ui --backend-store-uri file:./mlruns
-```
-
-Interface accessible sur `http://localhost:5000`.
-
-## Déploiement en production
-
-### API sur Hugging Face Spaces
-
-1. Créer un nouveau Space de type **Docker** sur Hugging Face.
-2. Pousser les fichiers du dossier `api/` (app.py, requirements.txt, Dockerfile, best_model.joblib).
-3. Le Space est automatiquement construit et exposé.
-
-L'URL aura la forme : `https://<votre-username>-getaround-api.hf.space/`
-
-Endpoints accessibles :
-- `GET /` - accueil
-- `GET /health` - état du service
-- `POST /predict` - prédiction du prix
-- `GET /docs` - documentation HTML
-
-### Dashboard sur Hugging Face Spaces
-
-1. Créer un second Space de type **Docker**.
-2. Pousser les fichiers du dossier `dashboard/` (dashboard.py, requirements.txt, Dockerfile, data/).
-3. Le tableau de bord est accessible sur l'URL du Space.
-
-## Dépendances principales
-
-- Python 3.11
-- pandas, numpy, scikit-learn, xgboost
-- mlflow pour le suivi d'expériences
-- FastAPI + Uvicorn pour l'API
-- Streamlit + Plotly pour le dashboard
-
-## Licence
-
-Projet pédagogique. Données fournies par Getaround.
+- **Protection des clés** : aucune clé API ou credential AWS n'apparaît en clair dans le code — tout est chargé via `python-dotenv` depuis des fichiers `.env` exclus du versionnement Git
+- **Résilience du scraping** : checkpoint CSV sauvegardé après chaque ville pour éviter la perte de données en cas d'interruption
+- **Contournement anti-bot** : utilisation de Selenium en mode headless avec scroll progressif pour déclencher le lazy-loading de Booking.com
+- **Pipeline ETL complet** : séparation claire entre Data Lake (S3, données brutes) et Data Warehouse (RDS, données structurées et requêtables)
