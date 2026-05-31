@@ -1,0 +1,29 @@
+name: Deploy API to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '5-Deploiement/getaround_project/api/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "204518881+AichaFa@users.noreply.github.com"
+          git config --global user.name "AichaFa"
+          
+          # Liaison sécurisée à ton Space Hugging Face
+          git remote add hf https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api
+          
+          # Envoi ciblé du sous-dossier de l'API vers Hugging Face
+          git subtree push --prefix 5-Deploiement/getaround_project/api hf main --force
