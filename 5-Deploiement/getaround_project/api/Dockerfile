@@ -24,3 +24,4 @@ COPY --chown=user ./best_model.joblib /app/best_model.joblib
 # 6. Exposition du port et lancement
 EXPOSE 7860
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+
