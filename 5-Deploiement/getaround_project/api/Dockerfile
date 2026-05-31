@@ -1,21 +1,26 @@
 FROM python:3.11-slim
 
-WORKDIR /code
-
-# Dépendances système minimales pour XGBoost
+# 1. Dépendances système minimales pour XGBoost (installées en root au début)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Dépendances Python
-COPY requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# 2. Création de l'utilisateur non-root exigé par Hugging Face
+RUN useradd -m -u 1000 user
+USER user
+ENV PATH="/home/user/.local/bin:${PATH}"
 
-# Code et modèle
-COPY ./app.py /code/app.py
-COPY ./best_model.joblib /code/best_model.joblib
+# 3. Dossier de travail (dans l'espace de l'utilisateur)
+WORKDIR /app
 
-# Port (Hugging Face Spaces utilise 7860 par défaut)
+# 4. Copie et installation des dépendances Python (avec attribution des droits à user)
+COPY --chown=user requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+# 5. Copie du code et du modèle (avec attribution des droits à user)
+COPY --chown=user ./app.py /app/app.py
+COPY --chown=user ./best_model.joblib /app/best_model.joblib
+
+# 6. Exposition du port et lancement
 EXPOSE 7860
-
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
