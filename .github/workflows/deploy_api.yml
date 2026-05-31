@@ -21,15 +21,21 @@ jobs:
           git config --global user.email "204518881+AichaFa@users.noreply.github.com"
           git config --global user.name "AichaFa"
           
-          # Clonage du Space dans un dossier temporaire
+          # 1. Clonage du Space dans un dossier temporaire
           git clone https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api hf_space
           
-          # Nettoyage et copie propre
+          # 2. Nettoyage et copie propre du nouveau contenu de l'API
           find hf_space -maxdepth 1 -not -name 'hf_space' -not -name '.git' -exec rm -rf {} \;
           cp -r 5-Deploiement/getaround_project/api/* hf_space/
           
-          # Push linéaire classique
           cd hf_space
+          
+          # 3. INITIALISATION ET CONFIGURATION DE GIT LFS POUR LES FICHIERS JOBLIB
+          git lfs install
+          git lfs track "*.joblib"
+          git add .gitattributes
+          
+          # 4. Commit et Push linéaire
           git add .
-          git diff-index --quiet HEAD || git commit -m "Deploy: Synchronisation automatique de l'API"
+          git diff-index --quiet HEAD || git commit -m "Deploy: Synchronisation avec support Git LFS pour .joblib"
           git push origin main
