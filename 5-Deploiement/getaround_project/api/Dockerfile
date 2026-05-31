@@ -1,37 +1,12 @@
-name: Deploy API to Hugging Face Spaces
+FROM python:3.10-slim
 
-on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - '5-Deploiement/getaround_project/api/**'
+WORKDIR /app
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-      - name: Push to Hugging Face
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git config --global user.email "204518881+AichaFa@users.noreply.github.com"
-          git config --global user.name "AichaFa"
-          
-          # Clonage dans un dossier temporaire dédié
-          git clone https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api hf_space
-          
-          # Nettoyage et copie propre
-          find hf_space -maxdepth 1 -not -name 'hf_space' -not -name '.git' -exec rm -rf {} \;
-          cp -r 5-Deploiement/getaround_project/api/* hf_space/
-          
-          # Push classique sur l'historique linéaire
-          cd hf_space
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Deploy: Synchronisation automatique de l'API"
-          git push origin main
-# Force build v5
+COPY . .
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
