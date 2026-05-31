@@ -1,0 +1,23 @@
+artifact_path: "file:E:/Projets_RNCP/2-Projets-Fullstack/5-D\xE9ploiement/getaround_project/mlruns/1/models/m-8a40f7a1ad9e4e8384728713fab06181/artifacts"
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.12.0
+model_id: m-8a40f7a1ad9e4e8384728713fab06181
+model_size_bytes: 3598
+model_uuid: m-8a40f7a1ad9e4e8384728713fab06181
+prompts: null
+run_id: 5c3365ebedea404ea2003872f8e4b801
+utc_time_created: '2026-05-31 09:30:39.218531'
