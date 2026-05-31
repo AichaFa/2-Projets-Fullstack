@@ -23,3 +23,5 @@ jobs:
           git config --global user.name "AichaFa"
           git remote add hf https://AichaFa:$HF_TOKEN@huggingface.co/spaces/AichaFaHugFace/getaround-api
           git subtree push --prefix 5-Deploiement/getaround_project/api hf main
+
+          
