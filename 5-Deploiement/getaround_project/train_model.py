@@ -1,22 +1,25 @@
 """
 Script d'entraînement du modèle de pricing.
+
 Exécution : python train_model.py
 """
-import pandas as pd
-import numpy as np
+from pathlib import Path
+import warnings
+
 import joblib
 import mlflow
 import mlflow.sklearn
-from pathlib import Path
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LinearRegression, Ridge
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+import pandas as pd
 import xgboost as xgb
-import warnings
+from sklearn.compose import ColumnTransformer
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
 warnings.filterwarnings('ignore')
 
 np.random.seed(42)
@@ -27,7 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR / "data" / "get_around_pricing_project.csv"
 MODEL_OUTPUT = BASE_DIR / "models" / "best_model.joblib"
 
+
 def load_and_clean(path):
+    """Charge le CSV et applique les filtres de nettoyage."""
     df = pd.read_csv(path).drop(columns=['Unnamed: 0'])
     df = df[df['mileage'] >= 0]
     df = df[df['engine_power'] > 0]
@@ -37,7 +42,9 @@ def load_and_clean(path):
     df['model_key'] = df['model_key'].replace(rare, 'Other')
     return df
 
+
 def build_pipeline(model):
+    """Construit le pipeline scikit-learn : prétraitement + modèle."""
     cat_cols = ['model_key', 'fuel', 'paint_color', 'car_type']
     num_cols = ['mileage', 'engine_power']
     bool_cols = ['private_parking_available', 'has_gps', 'has_air_conditioning',
@@ -50,7 +57,9 @@ def build_pipeline(model):
     ])
     return Pipeline([('preprocessor', pre), ('regressor', model)])
 
+
 def main():
+    """Entraîne plusieurs modèles, sélectionne le meilleur et le sauvegarde."""
     df = load_and_clean(DATA_PATH)
     print(f"Lignes après nettoyage : {len(df)}")
 
@@ -71,12 +80,18 @@ def main():
     models = {
         'LinearRegression': LinearRegression(),
         'Ridge': Ridge(alpha=1.0, random_state=42),
-        'RandomForest': RandomForestRegressor(n_estimators=200, max_depth=15,
-                                               random_state=42, n_jobs=-1),
-        'GradientBoosting': GradientBoostingRegressor(n_estimators=200, max_depth=5,
-                                                       learning_rate=0.05, random_state=42),
-        'XGBoost': xgb.XGBRegressor(n_estimators=300, max_depth=6, learning_rate=0.05,
-                                     random_state=42, verbosity=0, n_jobs=-1)
+        'RandomForest': RandomForestRegressor(
+            n_estimators=200, max_depth=15,
+            random_state=42, n_jobs=-1
+        ),
+        'GradientBoosting': GradientBoostingRegressor(
+            n_estimators=200, max_depth=5,
+            learning_rate=0.05, random_state=42
+        ),
+        'XGBoost': xgb.XGBRegressor(
+            n_estimators=300, max_depth=6, learning_rate=0.05,
+            random_state=42, verbosity=0, n_jobs=-1
+        ),
     }
 
     best_mae = float('inf')
@@ -109,6 +124,7 @@ def main():
     joblib.dump(best_pipe, MODEL_OUTPUT)
     print(f"\nMeilleur modèle : {best_name} (MAE={best_mae:.2f})")
     print(f"Sauvegardé dans : {MODEL_OUTPUT}")
+
 
 if __name__ == "__main__":
     main()
