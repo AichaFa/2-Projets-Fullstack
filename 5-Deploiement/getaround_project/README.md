@@ -8,7 +8,7 @@
 | Documentation API | https://aichafahugface-getaround-api.hf.space/docs | Page HTML interactive avec exemples et schémas |
 | **Tableau de bord** | https://aichafahugface-getaround-dashboard.hf.space | Analyse interactive des retards avec simulateur de seuil |
 
-### Exemple d'appel à l'API
+### Exemple d'appel à l'API (curl)
 
 ```bash
 curl -X POST "https://aichafahugface-getaround-api.hf.space/predict" \
@@ -17,6 +17,24 @@ curl -X POST "https://aichafahugface-getaround-api.hf.space/predict" \
 ```
 
 Réponse attendue : `{"prediction": [107.97]}`
+
+### Exemple d'appel à l'API (Python)
+
+```python
+import requests
+
+response = requests.post(
+    "https://aichafahugface-getaround-api.hf.space/predict",
+    json={
+        "input": [[
+            "Citroën", 140411, 100, "diesel", "black", "convertible",
+            True, True, False, False, True, True, True
+        ]]
+    }
+)
+print(response.json())
+# Affiche : {'prediction': [107.97]}
+```
 
 ---
 
