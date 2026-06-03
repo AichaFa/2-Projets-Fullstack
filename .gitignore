@@ -19,3 +19,6 @@ venv/
 # Traces MLflow locales
 mlruns/
 
+# Base MLflow locale
+*.db
+mlflow.db
