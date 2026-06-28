@@ -12,7 +12,7 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 - **Source :** Columbia University Speed Dating Experiment (2002-2004)
 - **Lignes :** 8 378 rencontres (une ligne = un speed date entre deux personnes)
 - **Colonnes :** 195 variables (démographie, auto-perception, notes, style de vie)
-- **Variable cible :** `match` - 1 si les deux ont dit oui (taux moyen : **16%**)
+- **Variable cible :** `match` - 1 si les deux ont dit oui (taux moyen : **16,5 %**)
 
 [Download CSV](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data.csv) | [Data Dictionary](https://full-stack-assets.s3.eu-west-3.amazonaws.com/M03-EDA/Speed+Dating+Data+Key.doc)
 
@@ -32,7 +32,7 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 - **L'humour et les intérêts communs suivent** (corr = 0.41 et 0.40) : des signaux actionnables pour un algorithme de matching.
 - **Les intérêts communs l'emportent sur l'origine raciale** par 3x : +3.3 pts de taux de match contre +1.0 pt.
 - **L'auto-perception est peu fiable** : surestimation de l'attractivité de +0.9 pt, de la sincérité de +1.13 pt. Corrélation auto-note / note réelle = **0.175**.
-- **La fatigue décisionnelle est réelle** : le taux d'acceptation passe de 43.2% (début de soirée) à 39.6% (fin de soirée), soit -3.6 pts pour les derniers partenaires rencontrés.
+- **La fatigue décisionnelle se confirme, avec un effet modéré** : le taux d'acceptation décline régulièrement au fil de la soirée, de 43.2 % (1er tiers) à 39.2 % (3e tiers), soit environ -4 pts ; l'écart est de -3.6 pts entre le tout premier et le tout dernier rendez-vous de la soirée. La corrélation position/décision reste faible (-0.03).
 
 ## Recommandations pour Tinder
 
