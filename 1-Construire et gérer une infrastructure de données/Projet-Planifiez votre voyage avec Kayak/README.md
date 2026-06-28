@@ -1,27 +1,27 @@
 # Plan your trip with Kayak
 
-Pipeline ETL complet qui recommande les **5 meilleures destinations** et les **20 meilleurs hotels** en France, en combinant des donnees meteorologiques et hotelieres collectees automatiquement, puis stockees sur une infrastructure cloud AWS.
+Pipeline ETL complet qui recommande les **5 meilleures destinations** et les **20 meilleurs hôtels** en France, en combinant des données météorologiques et hôtelières collectées automatiquement, puis stockées sur une infrastructure cloud AWS.
 
 ## Contexte et objectif
 
-L'equipe marketing souhaite un outil de recommandation de destinations base sur des donnees reelles. Aucune base n'existant au depart, le projet collecte, nettoie, stocke et restitue les donnees de bout en bout :
+L'équipe marketing souhaite un outil de recommandation de destinations fondé sur des données réelles. Aucune base n'existant au départ, le projet collecte, nettoie, stocke et restitue les données de bout en bout :
 
-- coordonnees geographiques des villes,
-- previsions meteorologiques,
-- offre hoteliere (nom, note, lien, description).
+- coordonnées géographiques des villes,
+- prévisions météorologiques,
+- offre hôtelière (nom, note, lien, description).
 
-Le perimetre couvre les 35 villes francaises imposees par le cahier des charges.
+Le périmètre couvre les 35 villes françaises imposées par le cahier des charges.
 
 ## Architecture du pipeline
 
 ```
-Geocodage (Nominatim)
+Géocodage (Nominatim)
         |
-   API Meteo (OpenWeatherMap)        Scraping hotels (Selenium / Booking.com)
+   API Météo (OpenWeatherMap)        Scraping hôtels (Selenium / Booking.com)
         |                                         |
         +---------------- ETL (Pandas) -----------+
                           |
-              Nettoyage, geocodage des hotels, scoring
+              Nettoyage, géocodage des hôtels, scoring
                           |
               Data Lake (AWS S3, fichiers CSV)
                           |
@@ -30,23 +30,22 @@ Geocodage (Nominatim)
               Visualisation (Plotly Express, cartes Mapbox)
 ```
 
-## Sources de donnees
+## Sources de données
 
-| Source | Usage | Acces |
+| Source | Usage | Accès |
 |---|---|---|
-| Nominatim (OpenStreetMap) | Coordonnees GPS des villes et des hotels | Gratuit, sans cle |
-| OpenWeatherMap (endpoint forecast 5 j / 3 h) | Temperature, probabilite et volume de pluie | Cle API gratuite |
-| Booking.com | Hotels : nom, note, lien, description | Scraping Selenium |
+| Nominatim (OpenStreetMap) | Coordonnées GPS des villes et des hôtels | Gratuit, sans clé |
+| OpenWeatherMap (endpoint forecast 5 j / 3 h) | Température, probabilité et volume de pluie | Clé API gratuite |
+| Booking.com | Hôtels : nom, note, lien, description | Scraping Selenium |
 
-## Structure du depot
+## Structure du dépôt
 
 ```
-.
+Projet-Planifiez votre voyage avec Kayak/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 ├── 01-Plan_your_trip_with_Kayak_Projet.ipynb
-├── 01-Plan_your_trip_with_Kayak_Projet.html
 ├── config/
 │   ├── aws.env.example
 │   └── openweather.env.example
@@ -58,11 +57,13 @@ Geocodage (Nominatim)
 │   ├── villes_scores_aggregated.csv
 │   └── kayak_final_enriched_data.csv
 ├── images/
-│   ├── top5_destinations.png
-│   ├── top20_hotels.png
-│   └── workflow_kayak.jpg
+│   ├── Top 5 Destinations.png
+│   └── Top 20 Hotels les mieux notes en France.png
 └── docs/
-    └── Kayak_Story_slides.pptx
+    ├── 01-Plan_your_trip_with_Kayak_Projet.html
+    ├── Kayak_Story_slides.pptx
+    ├── Kayak_Story_slides.pdf
+    └── DISCOURS_KAYAK.docx
 ```
 
 ## Installation
@@ -71,55 +72,55 @@ Geocodage (Nominatim)
 pip install -r requirements.txt
 ```
 
-Le scraping necessite Google Chrome installe localement ; le bon pilote est telecharge automatiquement par `webdriver-manager`.
+Le scraping nécessite Google Chrome installé localement ; le bon pilote est téléchargé automatiquement par `webdriver-manager`.
 
-## Configuration des cles
+## Configuration des clés
 
-Les identifiants ne figurent jamais dans le code. Copier les fichiers d'exemple, les renommer sans le suffixe `.example`, et les completer :
+Les identifiants ne figurent jamais dans le code. Copier les fichiers d'exemple, les renommer sans le suffixe `.example`, et les compléter :
 
 ```
 config/openweather.env      (OPENWEATHER_API_KEY)
-config/aws.env              (cles AWS S3 + RDS)
+config/aws.env              (clés AWS S3 + RDS)
 ```
 
-Ces fichiers reels sont exclus du versionnement par le `.gitignore`.
+Ces fichiers réels sont exclus du versionnement par le `.gitignore`.
 
-## Execution
+## Exécution
 
-Lancer le notebook `01-Plan_your_trip_with_Kayak_Projet.ipynb` dans l'ordre des sections. Les fichiers de sortie sont ecrits automatiquement dans `data/` :
+Lancer le notebook `01-Plan_your_trip_with_Kayak_Projet.ipynb` dans l'ordre des sections. Les fichiers de sortie sont écrits automatiquement dans `data/` :
 
-1. Geocodage des 35 villes (Nominatim).
-2. Collecte meteo (agregation sur l'horizon de prevision).
-3. Scraping des hotels (Selenium, checkpoint apres chaque ville).
-4. Nettoyage, geocodage des hotels, agregation et calcul du score.
-5. Envoi des 4 CSV transformes vers S3.
+1. Géocodage des 35 villes (Nominatim).
+2. Collecte météo (agrégation sur l'horizon de prévision).
+3. Scraping des hôtels (Selenium, checkpoint après chaque ville).
+4. Nettoyage, géocodage des hôtels, agrégation et calcul du score.
+5. Envoi des 4 CSV transformés vers S3.
 6. Injection des deux tables dans RDS.
-7. Cartes Top 5 destinations et Top 20 hotels.
+7. Cartes Top 5 destinations et Top 20 hôtels.
 
-## Donnees produites
+## Données produites
 
 | Fichier | Contenu |
 |---|---|
-| `villes_coords.csv` | 35 villes + coordonnees GPS (donnees brutes) |
-| `hotels_booking_35_villes.csv` | Hotels scrapes (donnees brutes) |
-| `villes_meteo_coords.csv` | Villes + meteo agregee |
-| `hotels_cleaned_full.csv` | Hotels nettoyes + coordonnees par etablissement |
-| `villes_scores_aggregated.csv` | Note hoteliere moyenne par ville |
-| `kayak_final_enriched_data.csv` | Dataset final enrichi et scored |
+| `villes_coords.csv` | 35 villes + coordonnées GPS (données brutes) |
+| `hotels_booking_35_villes.csv` | Hôtels scrapés (données brutes) |
+| `villes_meteo_coords.csv` | Villes + météo agrégée |
+| `hotels_cleaned_full.csv` | Hôtels nettoyés + coordonnées par établissement |
+| `villes_scores_aggregated.csv` | Note hôtelière moyenne par ville |
+| `kayak_final_enriched_data.csv` | Dataset final enrichi et noté |
 
-## Methodologie
+## Méthodologie
 
-**Geocodage.** Nominatim convertit chaque nom de ville (et chaque hotel) en coordonnees GPS, avec une pause d'une seconde par requete pour respecter la limite du service.
+**Géocodage.** Nominatim convertit chaque nom de ville (et chaque hôtel) en coordonnées GPS, avec une pause d'une seconde par requête pour respecter la limite du service.
 
-**Meteo.** L'endpoint gratuit `forecast` renvoie des previsions sur 5 jours par pas de 3 heures. Plutot que de retenir un seul creneau, on **agrege l'ensemble de l'horizon** : temperature moyenne, probabilite de pluie moyenne et volume de pluie cumule. L'API One Call sur 7 jours necessitant desormais un moyen de paiement enregistre, ce choix maintient un cout nul.
+**Météo.** L'endpoint gratuit `forecast` renvoie des prévisions sur 5 jours par pas de 3 heures. Plutôt que de retenir un seul créneau, on **agrège l'ensemble de l'horizon** : température moyenne, probabilité de pluie moyenne et volume de pluie cumulé. L'API One Call sur 7 jours étant devenue payante (moyen de paiement requis), ce choix maintient un coût nul tout en répondant à l'exigence du livrable.
 
-**Scraping.** Booking.com chargeant son contenu en JavaScript, `requests` ne suffit pas : Selenium pilote un navigateur Chrome headless, avec scroll progressif pour declencher le chargement differe et un checkpoint CSV apres chaque ville.
+**Scraping.** Booking.com chargeant son contenu en JavaScript, `requests` ne suffit pas : Selenium pilote un navigateur Chrome headless, avec défilement progressif pour déclencher le chargement différé et un checkpoint CSV après chaque ville.
 
-**Nettoyage.** Suppression des hotels sans note, deduplication par couple (nom, ville), et completion des descriptions manquantes.
+**Nettoyage.** Suppression des hôtels sans note, déduplication par couple (nom, ville), et complétion des descriptions manquantes.
 
 ## Score de voyage
 
-Chaque critere est ramene sur une echelle commune par normalisation min-max, puis pondere :
+Chaque critère est ramené sur une échelle commune par normalisation min-max, puis pondéré :
 
 ```
 travel_score = ( 0,4 x temperature_norm
@@ -127,26 +128,26 @@ travel_score = ( 0,4 x temperature_norm
                + 0,2 x faible_pluie_norm ) x 100
 ```
 
-Cette approche evite de melanger des unites differentes (degres, notes) et rend la ponderation transparente et ajustable.
+Cette approche évite de mélanger des unités différentes (degrés, notes) et rend la pondération transparente et ajustable.
 
 ## Stockage cloud
 
-- **Data Lake (S3) :** les 4 CSV transformes sont deposes dans un bucket, comme couche de stockage brut scalable et peu couteux.
-- **Data Warehouse (RDS / PostgreSQL) :** deux tables relationnelles, `cities` (une ligne par ville) et `hotels` (plusieurs lignes par ville), reliees par la cle `city_id`.
+- **Data Lake (S3) :** les 4 CSV transformés sont déposés dans un bucket, comme couche de stockage brut scalable et peu coûteux.
+- **Data Warehouse (RDS / PostgreSQL) :** deux tables relationnelles, `cities` (une ligne par ville) et `hotels` (plusieurs lignes par ville), reliées par la clé `city_id`.
 
 ## Visualisations
 
 Deux cartes interactives Plotly Express (fond Mapbox OpenStreetMap) :
 
-- **Top 5 destinations** : couleur selon la temperature, taille selon le score de voyage.
-- **Top 20 hotels** : positionnes a leurs coordonnees propres, couleur et taille selon la note.
+- **Top 5 destinations** : couleur selon la température, taille selon le score de voyage.
+- **Top 20 hôtels** : positionnés à leurs coordonnées propres, couleur et taille selon la note.
 
-## Conformite au RGPD
+## Conformité au RGPD
 
-Le projet ne collecte aucune donnee personnelle de personne physique. Les donnees sont publiques et non nominatives (villes, meteo, fiches d'etablissements). Les principes appliques : minimisation des champs collectes, protection des cles et identifiants via des fichiers `.env` non versionnes, cadences d'appel raisonnables, et acces restreint a l'infrastructure AWS.
+Le projet ne collecte aucune donnée personnelle de personne physique. Les données sont publiques et non nominatives (villes, météo, fiches d'établissements). Les principes appliqués : minimisation des champs collectés, protection des clés et identifiants via des fichiers `.env` non versionnés, cadences d'appel raisonnables, et accès restreint à l'infrastructure AWS.
 
 ## Limites et perspectives
 
-- Le scraping reste dependant de la structure de Booking.com et de ses protections anti-bot.
-- Le geocodage par nom d'hotel peut echouer : un repli sur les coordonnees du centre-ville est alors applique.
-- Perspectives : automatisation hebdomadaire (AWS Lambda + EventBridge), enrichissement du score avec les prix de transport (API SNCF), et integration du volume de pluie cumule.
+- Le scraping reste dépendant de la structure de Booking.com et de ses protections anti-robot, ce qui limite le nombre d'hôtels récupérés par ville.
+- Le géocodage par nom d'hôtel peut échouer : un repli sur les coordonnées du centre-ville est alors appliqué.
+- Perspectives : automatisation hebdomadaire (AWS Lambda + EventBridge), enrichissement du score avec les prix de transport (API SNCF), et intégration du volume de pluie cumulé.
