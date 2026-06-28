@@ -1,11 +1,24 @@
-config/
-openweather.env
-
-# Ignorer les fichiers de secrets s'ils sont créés par erreur ici
+# ============================================================
+# Secrets - fichiers d'environnement reels (NE JAMAIS versionner)
+# Les fichiers d'exemple (.example) restent suivis.
+# ============================================================
+config/*.env
 .env
-aws.env
-openweather.env
 
-# Ignorer les dossiers de cache
+# ============================================================
+# Python
+# ============================================================
 __pycache__/
+*.py[cod]
 .ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# ============================================================
+# Systeme et editeurs
+# ============================================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
