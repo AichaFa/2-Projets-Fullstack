@@ -27,10 +27,10 @@ Analyse exploratoire complète (EDA) des jeux disponibles sur Steam, réalisée 
 
 ```
 2-Steam/
-├── Project_Steam_part1.html   - Notebook 1 : Analyse Macro
-├── Project_Steam_part2.html   - Notebook 2 : Genres et Plateformes
+├── Project_Steam_part1.ipynb  - Notebook 1 : Analyse Macro
+├── Project_Steam_part2.ipynb  - Notebook 2 : Genres et Plateformes
 ├── images/                    - Captures Databricks
-└── archive/                   - Fichiers de travail (ipynb)
+└── archive/                   - Fichiers de travail
 ```
 
 ---
@@ -38,14 +38,8 @@ Analyse exploratoire complète (EDA) des jeux disponibles sur Steam, réalisée 
 ## Consulter les notebooks
 
 ### Fichiers HTML (recommandé)
-- [Notebook 1 - Analyse Macro](./Project_Steam_part1.html)
-- [Notebook 2 - Genres et Plateformes](./Project_Steam_part2.html)
-
-### Liens Databricks (accès workspace personnel)
-- [Notebook 1 - Databricks](https://dbc-d23f2ffb-9f5f.cloud.databricks.com/editor/notebooks/3659326689703957?o=7474656704147178#command/7337978027093016)
-- [Notebook 2 - Databricks](https://dbc-d23f2ffb-9f5f.cloud.databricks.com/editor/notebooks/3659326689703959?o=7474656704147178#command/7337978027093036)
-
-> Note : les liens Databricks nécessitent un accès au workspace. Privilégier les fichiers HTML.
+- [Notebook 1 - Analyse Macro](./archive/Project_Steam_part1.html)
+- [Notebook 2 - Genres et Plateformes](./archive/Project_Steam_part2.html)
 
 ---
 
