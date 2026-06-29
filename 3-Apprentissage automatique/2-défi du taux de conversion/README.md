@@ -222,12 +222,15 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 
 ```
 
-### Certification RNCP
+## Certification RNCP
 
-> **Projet de certification - Bloc #3**
-> Ce livrable repond aux competences obligatoires requises pour la validation du **Bloc #3 : Apprentissage automatique** (supervise et non supervise) du titre d'**Ingenieur en Apprentissage Automatique** (Concepteur Developpeur en Science des Donnees).
-> **Competences demontrees et evaluees :**
-> * Exploration de donnees (EDA) et ingenierie des variables (Feature Engineering) : Traitement des valeurs aberrantes et encodage isole des variables.
-> * Strategie de modelisation predictive complete : Conception d'une solution de reference (baseline) suivie de l'evaluation de modeles d'ensembles complexes (Random Forest et Gradient Boosting).
-> * Gestion industrielle du desequilibre de classes : Arbitrage oriente metrique metier par l'optimisation specifique du score F1 et analyse de l'espace de decision grace aux courbes ROC-AUC.
-> * Reproductibilite des experiences et structuration de code : Respect des pipelines scikit-learn pour interdire toute fuite d'information.
+### Projet de certification - Bloc 3
+
+Ce livrable repond aux competences obligatoires requises pour la validation du Bloc 3 (Apprentissage automatique supervise et non supervise) du titre d'Ingenieur en Apprentissage Automatique (Concepteur Developpeur en Science des Donnees).
+
+### Competences demontrees et evaluees
+
+* Exploration de donnees (EDA) et ingenierie des variables (Feature Engineering) : Traitement des valeurs aberrantes et encodage isole des variables sans fuite d'information.
+* Strategie de modelisation predictive complete : Conception d'une solution de reference (baseline) suivie de l'evaluation de modeles d'ensembles complexes (Random Forest et Gradient Boosting).
+* Gestion industrielle du desequilibre de classes : Arbitrage oriente metrique metier par l'optimisation specifique du score F1 et analyse de l'espace de decision grace aux courbes ROC-AUC.
+* Reproductibilite des experiences et structuration de code : Respect des pipelines scikit-learn et fixation des graines aleatoires.
