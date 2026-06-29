@@ -212,3 +212,26 @@ jupyter notebook 02-The_North_Face_ecommerce.ipynb
 ## Auteur
 
 Projet réalisé dans le cadre d'une formation en Data Science.
+
+## Stack Technique
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-1.x-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![spaCy](https://img.shields.io/badge/spaCy-3.x-09A3D5?style=for-the-badge&logo=spacy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.x-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
+
+---
+
+## Certification
+
+> **Projet de certification — Bloc #3**
+>
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #3 : Apprentissage automatique** (supervisé et non supervisé) du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
+>
+> **Compétences évaluées et validées ici :**
+> * Conception d'un pipeline de préparation de données textuelles (NLP) pour l'apprentissage des algorithmes (nettoyage HTML, lemmatisation spaCy, vectorisation TF-IDF).
+> * Qualité de l'optimisation et pertinence du clustering non supervisé (sélection de l'Epsilon pour DBSCAN avec distance cosinus et réduction du taux d'outliers).
+> * Performance de l'algorithme programmé et extraction sémantique multi-thèmes via décomposition LSA (TruncatedSVD et normalisation L2).
