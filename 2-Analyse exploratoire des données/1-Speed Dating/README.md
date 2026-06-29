@@ -62,7 +62,7 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 
 ## Certification
 
-> 📊 **Projet de certification — Bloc #2**
+> **Projet de certification — Bloc #2**
 >
 > Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #2 : Analyse exploratoire des données** du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
 >
