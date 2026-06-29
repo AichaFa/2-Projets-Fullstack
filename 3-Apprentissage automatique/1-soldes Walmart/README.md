@@ -151,30 +151,21 @@ Le modèle quantifie l'influence des indicateurs économiques et permet de formu
 
 ---
 
-## Certification
-
-> Projet réalisé dans le cadre de la validation du **Bloc #3 - Apprentissage automatique** (supervisé et non supervisé), au sein du titre Concepteur Développeur en Science des Données.
->
-> **Compétences évaluées :**
->
-> - Robustesse de la préparation des données : gestion des valeurs manquantes, encodage One-Hot, normalisation avec StandardScaler et filtrage des valeurs aberrantes.
-> - Performance et optimisation des modèles : suivi du R², de la MAE et de la RMSE, optimisation de l'hyperparamètre via GridSearchCV avec validation croisée.
-> - Diagnostic du modèle : gestion du surapprentissage et amélioration de la généralisation grâce aux régularisations Ridge et Lasso.
-
 ## Stack technique
 
-![PySpark](https://img.shields.io/badge/PYSPARK-E25A23?style=for-the-badge&logo=apachespark&logoColor=white) ![Databricks](https://img.shields.io/badge/DATABRICKS-FF3621?style=for-the-badge&logo=databricks&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Python](https://img.shields.io/badge/PYTHON-1F425F?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/PYTHON-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/SCIKIT_LEARN-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white) ![Pandas](https://img.shields.io/badge/PANDAS-150458?style=for-the-badge&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NUMPY-013243?style=for-the-badge&logo=numpy&logoColor=white) ![Seaborn](https://img.shields.io/badge/SEABORN-4479A1?style=for-the-badge&logo=データ&logoColor=white)
 
 ---
 
 ## Certification
 
-> **📑 Projet de certification — Bloc #2**
+> ** Projet de certification — Bloc #3**
 >
-> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #2 : Analyse exploratoire des données** du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
+> Ce projet constitue le **Projet Supervisé 1** requis pour la validation du **Bloc #3 : Apprentissage automatique (Machine Learning)** du certificat de **Concepteur Développeur en Science des Données (Ingénieur en Apprentissage Automatique)** de Jedha.
 >
 > Compétences évaluées et validées ici :
 >
-> * Pertinence de la méthodologie de nettoyage, de traitement de volumes importants (fichiers JSON complexes) et de préparation des données.
-> * Choix et efficacité du traitement parallélisé appliqué pour l'analyse statistique distribuée.
-> * Clarté, simplicité des graphiques construits sur Databricks et pertinence business des recommandations formulées pour l'éditeur.
+> * **Conception d'un pipeline de préparation des données** (Preprocessing) adapté pour l'apprentissage des algorithmes.
+> * **Sélection, entraînement et optimisation de modèles de régression** (Machine Learning Supervisé) pour prédire des cibles continues.
+> * **Analyse et évaluation des performances des modèles** via des métriques rigoureuses (Score $R^2$, Validation croisée K-Fold) et gestion du surapprentissage (Overfitting).
+> * **Propreté et structure du code** en conformité avec les standards de développement (normes PEP8).
