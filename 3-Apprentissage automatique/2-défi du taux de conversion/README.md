@@ -248,7 +248,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 
 ## Certification
 
-> 📊 **Projet de certification — Bloc #3**
+> **Projet de certification — Bloc #3**
 >
 > Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #3 : Apprentissage automatique** (supervisé et non supervisé) du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
 >
