@@ -160,3 +160,21 @@ Le modèle quantifie l'influence des indicateurs économiques et permet de formu
 > - Robustesse de la préparation des données : gestion des valeurs manquantes, encodage One-Hot, normalisation avec StandardScaler et filtrage des valeurs aberrantes.
 > - Performance et optimisation des modèles : suivi du R², de la MAE et de la RMSE, optimisation de l'hyperparamètre via GridSearchCV avec validation croisée.
 > - Diagnostic du modèle : gestion du surapprentissage et amélioration de la généralisation grâce aux régularisations Ridge et Lasso.
+
+## Stack technique
+
+![PySpark](https://img.shields.io/badge/PYSPARK-E25A23?style=for-the-badge&logo=apachespark&logoColor=white) ![Databricks](https://img.shields.io/badge/DATABRICKS-FF3621?style=for-the-badge&logo=databricks&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Python](https://img.shields.io/badge/PYTHON-1F425F?style=for-the-badge&logo=python&logoColor=white)
+
+---
+
+## Certification
+
+> **📑 Projet de certification — Bloc #2**
+>
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #2 : Analyse exploratoire des données** du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
+>
+> Compétences évaluées et validées ici :
+>
+> * Pertinence de la méthodologie de nettoyage, de traitement de volumes importants (fichiers JSON complexes) et de préparation des données.
+> * Choix et efficacité du traitement parallélisé appliqué pour l'analyse statistique distribuée.
+> * Clarté, simplicité des graphiques construits sur Databricks et pertinence business des recommandations formulées pour l'éditeur.
