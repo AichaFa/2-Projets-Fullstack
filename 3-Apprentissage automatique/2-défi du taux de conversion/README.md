@@ -82,7 +82,7 @@ Le jeu de données est fortement déséquilibré :
 - Non convertis : 275 400 visiteurs (96,8 %)
 - Convertis : 9 178 visiteurs (3,2 %)
 
-Ce déséquilibre impose l'utilisation du paramètre `class_weight='balanced'` dans tous les modèles.
+Ce déséquilibre impose une vigilance accrue. Nous avons utilisé le paramètre class_weight='balanced' pour la régression logistique et le Random Forest, tandis que le Gradient Boosting gère ce déséquilibre de manière native à travers l'optimisation successive de ses arbres de décision.
 
 ### Valeur aberrante détectée
 
@@ -174,7 +174,7 @@ GradientBoostingClassifier(
 
 | Variable | Importance | Part |
 |---|---|---|
-| `total_pages_visited` | 0,8741 | 87,4 % |
+| `total_pages_visited` | 0,8741 | 87,6 % |
 | `new_user` | 0,0585 | 5,9 % |
 | `country` | 0,0415 | 4,2 % |
 | `age` | 0,0250 | 2,5 % |
@@ -234,3 +234,25 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 2. Créer un dossier `graphiques/` à la racine du projet
 3. Ouvrir et exécuter `02-Conversion_rate_challenge.ipynb` dans Jupyter
 4. Le fichier `predictions_soumission.csv` est généré automatiquement à la racine du projet
+
+## Stack Technique
+
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C9BE8?style=for-the-badge&logoColor=white)
+
+---
+
+## Certification
+
+> 📊 **Projet de certification — Bloc #3**
+>
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #3 : Apprentissage automatique** (supervisé et non supervisé) du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
+>
+> **Compétences évaluées et validées ici :**
+> * Prétraitement et feature engineering adaptés (encodage, normalisation, isolation et traitement des valeurs aberrantes).
+> * Modélisation statistique et algorithmique supervisée (conception d'une baseline, Random Forest et optimisation par Gradient Boosting).
+> * Mesure, arbitrage et optimisation de la performance du modèle face à un fort déséquilibre de classes (optimisation fine basée sur le score F1 et la courbe ROC-AUC).

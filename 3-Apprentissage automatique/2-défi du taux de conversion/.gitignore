@@ -1,0 +1,3 @@
+# Ignorer les dossiers virtuels ou de cache Python (si existants)
+__pycache__/
+.ipynb_checkpoints
