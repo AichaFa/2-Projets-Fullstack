@@ -220,7 +220,8 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
 ![Seaborn](https://img.shields.io/badge/Seaborn-4C9BE8?style=for-the-badge&logoColor=white)
 
-```
+
+---
 
 ## Certification RNCP
 
