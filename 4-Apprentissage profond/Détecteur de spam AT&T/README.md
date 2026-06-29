@@ -43,21 +43,23 @@ Recommandation operationnelle : Le Modele 2 (DistilBERT) offre la meilleure capa
 
 ## Stack Technique
 
-![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
 ![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Transformers-Hugging%20Face-FFD21E?style=for-the-badge)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 ---
 
 ## Certification
 
-> Projet de certification - Bloc #4
+> 🕵️‍♂️ **Projet de certification — Bloc #4**
 >
-> Ce projet fait partie des livrables obligatoires pour la validation du Bloc #4 : Apprentissage profond du certificat d'Ingenieur en Apprentissage Automatique (Concepteur Developpeur en Science des Donnees).
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #4 : Apprentissage profond** (Deep Learning) du certificat d'**Ingénieur en Apprentissage Automatique** (*Concepteur Développeur en Science des Données — Certification RNCP de Niveau 7*).
 >
-> Competences evaluees et validees ici :
-> * Capacite a structurer, nettoyer et vectoriser des sequences textuelles complexes pour des reseaux de neurones (Tokenization, Text Bucketing, Padding).
-> * Conception, entrainement et regularisation d'une architecture de Deep Learning recurrente complexe (BiLSTM) avec gestion des problemes de disparition de gradient.
-> * Maitrise des techniques de transfert d'apprentissage (Fine-tuning de Transformers) et optimisation fine des hyperparametres de decision (Ajustement du seuil de classification face aux faux positifs).
+> **Compétences évaluées et validées ici :**
+> * Capacité à structurer, nettoyer et vectoriser des séquences textuelles complexes pour des réseaux de neurones (Tokenization, Padding, Tenseurs).
+> * Conception, entraînement et régularisation d'une architecture de réseau récurrent bidirectionnel sur-mesure (Embedding + BiLSTM).
+> * Implémentation d'une stratégie moderne de transfert d'apprentissage via un modèle de type Transformer (Fine-tuning de DistilBERT avec Hugging Face).
+> * Optimisation des métriques de classification en environnement déséquilibré (Ajustement du seuil critique de décision, analyse des courbes AUC-ROC et F1-Score).
+>
