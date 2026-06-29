@@ -151,3 +151,26 @@ Le projet ne collecte aucune donnée personnelle de personne physique. Les donn�
 - Le scraping reste dépendant de la structure de Booking.com et de ses protections anti-robot, ce qui limite le nombre d'hôtels récupérés par ville.
 - Le géocodage par nom d'hôtel peut échouer : un repli sur les coordonnées du centre-ville est alors appliqué.
 - Perspectives : automatisation hebdomadaire (AWS Lambda + EventBridge), enrichissement du score avec les prix de transport (API SNCF), et intégration du volume de pluie cumulé.
+
+## Stack Technique
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Selenium](https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white)
+
+---
+
+## Certification
+
+> 📊 **Projet de certification — Bloc #1**
+>
+> [cite_start]Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #1 : Construire et gérer une infrastructure de données**  [cite_start]du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données)[cite: 18, 20].
+>
+> **Compétences évaluées et validées ici :**
+> [cite_start]* Qualité des données extraites du web (Scraping Booking) et transférées vers le Data Lake[cite: 30].
+> [cite_start]* Robustesse, efficacité et conformité RGPD du processus ETL (Pandas, Nominatim, OpenWeatherMap)[cite: 30].
+> * Accessibilité et structuration des données disponibles dans l'entrepôt de données (AWS RDS / PostgreSQL)[cite: 30].
