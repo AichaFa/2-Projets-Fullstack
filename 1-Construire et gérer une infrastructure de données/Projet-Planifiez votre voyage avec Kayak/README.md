@@ -166,7 +166,7 @@ Le projet ne collecte aucune donnée personnelle de personne physique. Les donn�
 
 ## Certification
 
-> 📊 **Projet de certification — Bloc #1**
+> **Projet de certification — Bloc #1**
 >
 > Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #1 : Construire et gérer une infrastructure de données** du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
 >
