@@ -53,7 +53,7 @@ Recommandation operationnelle : Le Modele 2 (DistilBERT) offre la meilleure capa
 
 ## Certification
 
-> 🕵️‍♂️ **Projet de certification — Bloc #4**
+> **Projet de certification — Bloc #4**
 >
 > Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #4 : Apprentissage profond** (Deep Learning) du certificat d'**Ingénieur en Apprentissage Automatique** (*Concepteur Développeur en Science des Données — Certification RNCP de Niveau 7*).
 >
