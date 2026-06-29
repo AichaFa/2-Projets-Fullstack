@@ -211,8 +211,18 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 4. Le fichier de soumission standardise `predictions_soumission.csv` est genere automatiquement a la racine a la fin du script.
 
 ---
+## Stack Technique
 
-## Certification RNCP
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C9BE8?style=for-the-badge&logoColor=white)
+
+```
+
+### Certification RNCP
 
 > **Projet de certification - Bloc #3**
 > Ce livrable repond aux competences obligatoires requises pour la validation du **Bloc #3 : Apprentissage automatique** (supervise et non supervise) du titre d'**Ingenieur en Apprentissage Automatique** (Concepteur Developpeur en Science des Donnees).
