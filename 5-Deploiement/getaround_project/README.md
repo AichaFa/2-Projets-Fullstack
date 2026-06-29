@@ -209,9 +209,9 @@ Endpoints accessibles :
 
 Projet pédagogique. Données fournies par Getaround.
 
-## Stack technique
+## Stack Technique
 
-![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
@@ -223,11 +223,12 @@ Projet pédagogique. Données fournies par Getaround.
 
 ## Certification
 
-> Projet de certification - Bloc #5
+> 🚗 **Projet de certification — Bloc #5**
 >
-> Ce projet fait partie des livrables obligatoires pour la validation du Bloc #5 : Déploiement et mise en production du certificat d'Ingénieur en Apprentissage Automatique (Concepteur Développeur en Science des Données).
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #5 : Déploiement et mise en production** (MLOps / Industrialisation) du certificat d'**Ingénieur en Apprentissage Automatique** (*Concepteur Développeur en Science des Données — Certification RNCP de Niveau 7*).
 >
-> Compétences évaluées et validées ici :
+> **Compétences évaluées et validées ici :**
 > * Industrialisation et gestion du cycle de vie d'un modèle de régression (tracking des expériences, journalisation des hyperparamètres et sérialisation du modèle optimal avec MLflow).
 > * Développement et exposition d'un service de prédiction Web scalable (conception d'une API REST avec FastAPI, validation stricte des données d'entrée via Pydantic et documentation OpenAPI).
-> * Conception d'un tableau de bord d'aide à la décision métier et déploiement cloud (développement sous Streamlit pour simuler les seuils opérationnels et isolation des environnements d'exécution par conteneurisation Docker multi-services sur Hugging Face Spaces).
+> * Conception d'un outil décisionnel interactif orienté produit (développement d'une application de Business Intelligence avec Streamlit et graphiques Plotly).
+> * Conteneurisation, isolation des environnements et déploiement continu en production (rédaction d'un Dockerfile multi-plateforme, gestion des dépendances système pour XGBoost et hébergement cloud fonctionnel).
