@@ -4,8 +4,6 @@
 
 Analyse exploratoire complète (EDA) des jeux disponibles sur Steam, réalisée pour le compte d'**Ubisoft** afin d'orienter la stratégie de lancement d'un nouveau jeu vidéo.
 
-Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai 2026**.
-
 ---
 
 ## Dataset
@@ -73,16 +71,16 @@ Projet réalisé dans le cadre de la certification **CSDS - Jedha Bootcamp - Mai
 ### Genres
 | Indicateur | Résultat |
 |------------|----------|
-| Genre le plus représenté | Indie - 38 000+ jeux (marché saturé) |
+| Genre le plus représenté | Indie - 39 681 jeux (marché saturé) |
 | Genre le plus lucratif | Action - 3 milliards de propriétaires |
 | Meilleur ratio d'avis | Game Development - 82% |
 
 ### Plateformes
 | Plateforme | Part du marché |
 |------------|---------------|
-| Windows | 98% |
-| Mac | 24% |
-| Linux | 19% |
+| Windows | environ 100% |
+| Mac | 23% |
+| Linux | 15% |
 
 ---
 
