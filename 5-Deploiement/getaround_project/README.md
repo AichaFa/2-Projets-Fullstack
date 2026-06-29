@@ -121,7 +121,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-L'API est accessible sur `http://localhost:8000`, la documentation HTML sur `http://localhost:8000/docs` et l'interface OpenAPI alternative sur `http://localhost:8000/redoc`.
+L'API sera alors accessible dans votre navigateur sur `http://localhost:8000`, la documentation HTML sur `http://localhost:8000/docs` et l'interface OpenAPI alternative sur `http://localhost:8000/redoc`.
 
 Exemple de requête sous Linux/macOS :
 
@@ -148,7 +148,7 @@ pip install -r requirements.txt
 streamlit run dashboard.py
 ```
 
-Le dashboard est accessible sur `http://localhost:8501`.
+Le tableau de bord local sera alors accessible dans votre navigateur sur `http://localhost:8501`.
 
 ### Notebook
 
