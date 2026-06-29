@@ -50,14 +50,23 @@ Le dataset couvre **8 378 rencontres** entre participants qui se sont notés sur
 └── README.md
 ```
 
-## Stack
+## Stack Technique
 
-![Python](https://img.shields.io/badge/Python_3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/matplotlib-11557c?style=for-the-badge&logo=python&logoColor=white)
-![Seaborn](https://img.shields.io/badge/seaborn-4c72b0?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-%2311557c.svg?style=for-the-badge&logo=python&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-%234C72B0.svg?style=for-the-badge&logo=python&logoColor=white)
+
+---
 
 ## Certification
 
-Ce projet fait partie des livrables obligatoires pour la certification **Bloc #2**.
+> 📊 **Projet de certification — Bloc #2**
+>
+> Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #2 : Analyse exploratoire des données** du certificat d'**Ingénieur en Apprentissage Automatique** (Concepteur Développeur en Science des Données).
+>
+> **Compétences évaluées et validées ici :**
+> * Pertinence de la méthodologie de nettoyage et de préparation des données (gestion des valeurs manquantes, types de données).
+> * Choix et efficacité des analyses statistiques effectuées (analyses univariées, distributions, matrices de corrélation de Pearson).
+> * Clarté, simplicité des graphiques construits et pertinence business des recommandations formulées.
