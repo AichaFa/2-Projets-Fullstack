@@ -223,7 +223,7 @@ Projet pédagogique. Données fournies par Getaround.
 
 ## Certification
 
-> 🚗 **Projet de certification — Bloc #5**
+> **Projet de certification — Bloc #5**
 >
 > Ce projet fait partie des livrables obligatoires pour la validation du **Bloc #5 : Déploiement et mise en production** (MLOps / Industrialisation) du certificat d'**Ingénieur en Apprentissage Automatique** (*Concepteur Développeur en Science des Données — Certification RNCP de Niveau 7*).
 >
