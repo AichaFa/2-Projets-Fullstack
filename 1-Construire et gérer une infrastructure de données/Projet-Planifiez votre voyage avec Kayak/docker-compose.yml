@@ -1,0 +1,31 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: kayak-minio
+    ports:
+      - "9000:9000"   # API S3 (utilisee par boto3)
+      - "9001:9001"   # Console web d'administration
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: kayak-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: kayak
+      POSTGRES_PASSWORD: kayak_pwd
+      POSTGRES_DB: kayak
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  minio-data:
+  pg-data:
