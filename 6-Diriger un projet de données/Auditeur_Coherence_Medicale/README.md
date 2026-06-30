@@ -87,7 +87,7 @@ Une interface (MIROIR) permet de charger une paire image-rapport, ou d'en modifi
 Le projet est organisé en dossiers numérotés selon les étapes du pipeline. Pour exécuter les notebooks en local, le dossier de travail doit être structuré ainsi :
 
 ```
-Auditeur-Coherence-Medicale/
+Auditeur_Coherence_Medicale/
 ├── 1_exploration/                      (notebooks d'exploration, non officiels)
 ├── 2_preparation_donnees/
 │   └── create_dataset_sample.ipynb
@@ -97,7 +97,7 @@ Auditeur-Coherence-Medicale/
 │   └── anciennes_versions/
 ├── 4_application/
 │   └── appli_demo_V2.py
-├── Presentation/
+├── 5-Presentation/
 └── CheXpert/                           (donnees brutes, exclues du depot via .gitignore)
     ├── df_chexpert_plus_240401.csv
     ├── chexbert_labels/
