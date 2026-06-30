@@ -1,0 +1,35 @@
+# ============================================================
+# Donnees brutes et volumineuses (a NE JAMAIS versionner)
+# ============================================================
+CheXpert/
+CheXpert-v1.0-small/
+*/CheXpert/
+*/CheXpert-v1.0-small/
+
+
+# Caracteristiques pre-calculees et poids de modeles
+features/
+*.pt
+*.pth
+*.ckpt
+*.pt2
+mon_modele/
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+
+# ============================================================
+# Systeme et editeurs
+# ============================================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

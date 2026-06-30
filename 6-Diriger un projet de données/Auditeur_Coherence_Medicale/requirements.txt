@@ -1,0 +1,28 @@
+# Manipulation de donnees
+pandas
+numpy
+
+# Apprentissage automatique et metriques
+scikit-learn
+
+# Visualisation
+matplotlib
+plotly
+
+# Images et utilitaires
+pillow
+tqdm
+
+# Apprentissage profond
+torch
+torchvision
+
+# Modeles pre-entraines et multimodal
+open_clip_torch
+transformers
+peft
+torchinfo
+hi-ml-multimodal
+
+# Application de demonstration
+streamlit
