@@ -31,7 +31,7 @@ st.set_page_config(
     page_title="Getaround - Tableau de bord des retards",
     page_icon="G",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 CSS = """
@@ -60,9 +60,11 @@ def load_data():
 @st.cache_data
 def prepare_chained(df):
     prev_info = df[["rental_id", "delay_at_checkout_in_minutes", "state"]].rename(
-        columns={"rental_id": "previous_ended_rental_id",
-                 "delay_at_checkout_in_minutes": "previous_delay",
-                 "state": "previous_state"}
+        columns={
+            "rental_id": "previous_ended_rental_id",
+            "delay_at_checkout_in_minutes": "previous_delay",
+            "state": "previous_state",
+        }
     )
     chained = df.dropna(subset=["previous_ended_rental_id"]).merge(
         prev_info, on="previous_ended_rental_id", how="left"
@@ -89,12 +91,15 @@ st.sidebar.markdown("---")
 
 scope = st.sidebar.radio(
     "Périmètre de la fonctionnalité",
-    ["Toutes les voitures", "Connect uniquement", "Mobile uniquement"]
+    ["Toutes les voitures", "Connect uniquement", "Mobile uniquement"],
 )
 
 threshold = st.sidebar.slider(
     "Seuil minimum entre deux locations (minutes)",
-    min_value=0, max_value=720, value=60, step=15
+    min_value=0,
+    max_value=720,
+    value=60,
+    step=15,
 )
 
 st.sidebar.markdown("---")
@@ -159,9 +164,11 @@ st.subheader("1. Répartition des retards à la restitution")
 
 col1, col2 = st.columns(2)
 with col1:
-    delays_df = df[df["state"] == "ended"].dropna(
-        subset=["delay_at_checkout_in_minutes"]
-    ).copy()
+    delays_df = (
+        df[df["state"] == "ended"]
+        .dropna(subset=["delay_at_checkout_in_minutes"])
+        .copy()
+    )
 
     def categorize(d):
         if d < 0:
@@ -180,21 +187,41 @@ with col1:
             return "Retard > 6 h"
 
     delays_df["categorie"] = delays_df["delay_at_checkout_in_minutes"].apply(categorize)
-    order = ["En avance", "À l'heure", "Retard 0-30 min", "Retard 30-60 min",
-             "Retard 1-2 h", "Retard 2-6 h", "Retard > 6 h"]
+    order = [
+        "En avance",
+        "À l'heure",
+        "Retard 0-30 min",
+        "Retard 30-60 min",
+        "Retard 1-2 h",
+        "Retard 2-6 h",
+        "Retard > 6 h",
+    ]
     cat_counts = delays_df["categorie"].value_counts().reindex(order)
 
-    colors = ["#10b981", "#3b82f6", "#facc15", "#f97316", "#ef4444",
-              "#dc2626", "#7f1d1d"]
-    fig = go.Figure(go.Bar(
-        x=order, y=cat_counts.values, marker_color=colors,
-        text=[f"{int(v):,}".replace(",", " ") for v in cat_counts.values],
-        textposition="outside"
-    ))
+    colors = [
+        "#10b981",
+        "#3b82f6",
+        "#facc15",
+        "#f97316",
+        "#ef4444",
+        "#dc2626",
+        "#7f1d1d",
+    ]
+    fig = go.Figure(
+        go.Bar(
+            x=order,
+            y=cat_counts.values,
+            marker_color=colors,
+            text=[f"{int(v):,}".replace(",", " ") for v in cat_counts.values],
+            textposition="outside",
+        )
+    )
     fig.update_layout(
         title="Répartition des restitutions par tranche de délai",
-        xaxis_title="Catégorie", yaxis_title="Nombre de locations",
-        template="plotly_white", height=380
+        xaxis_title="Catégorie",
+        yaxis_title="Nombre de locations",
+        template="plotly_white",
+        height=380,
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -207,11 +234,16 @@ with col2:
         x_range = [-300, 600]
 
     fig = px.histogram(
-        delays_df, x="delay_at_checkout_in_minutes", color="checkin_type",
-        nbins=80, color_discrete_map={"mobile": "#4C72B0", "connect": "#DD8452"},
+        delays_df,
+        x="delay_at_checkout_in_minutes",
+        color="checkin_type",
+        nbins=80,
+        color_discrete_map={"mobile": "#4C72B0", "connect": "#DD8452"},
         title="Distribution des délais par type de check-in",
-        labels={"delay_at_checkout_in_minutes": "Délai (minutes)",
-                "checkin_type": "Type"}
+        labels={
+            "delay_at_checkout_in_minutes": "Délai (minutes)",
+            "checkin_type": "Type",
+        },
     )
     fig.add_vline(x=0, line_dash="dash", line_color="red")
     if x_range:
@@ -247,27 +279,34 @@ labels_b = ["0-30 min", "30-60 min", "1-2 h", "2-3 h", "3-6 h", "6-9 h", "9-12 h
 scope_df_v = scope_df.copy()
 scope_df_v["delta_cat"] = pd.cut(
     scope_df_v["time_delta_with_previous_rental_in_minutes"],
-    bins=bins, labels=labels_b, include_lowest=True
+    bins=bins,
+    labels=labels_b,
+    include_lowest=True,
 )
-prob_by_delta = scope_df_v.groupby("delta_cat", observed=True)["problematic"].agg(
-    ["mean", "count"]
-).reset_index()
+prob_by_delta = (
+    scope_df_v.groupby("delta_cat", observed=True)["problematic"]
+    .agg(["mean", "count"])
+    .reset_index()
+)
 prob_by_delta["pct"] = prob_by_delta["mean"] * 100
 
 fig = go.Figure()
-fig.add_trace(go.Bar(
-    x=prob_by_delta["delta_cat"].astype(str),
-    y=prob_by_delta["pct"],
-    marker_color="#dc2626",
-    text=[f"{v:.1f}%" for v in prob_by_delta["pct"]],
-    textposition="outside",
-    name="Taux de cas problématiques"
-))
+fig.add_trace(
+    go.Bar(
+        x=prob_by_delta["delta_cat"].astype(str),
+        y=prob_by_delta["pct"],
+        marker_color="#dc2626",
+        text=[f"{v:.1f}%" for v in prob_by_delta["pct"]],
+        textposition="outside",
+        name="Taux de cas problématiques",
+    )
+)
 fig.update_layout(
     title=f"Taux de cas problématiques selon l'écart prévu entre locations - {scope_label}",
     xaxis_title="Écart prévu entre les deux locations",
     yaxis_title="% de cas problématiques",
-    template="plotly_white", height=400
+    template="plotly_white",
+    height=400,
 )
 st.plotly_chart(fig, use_container_width=True)
 
@@ -292,7 +331,7 @@ with col1:
     st.metric(
         "Locations bloquées",
         f"{blocked}",
-        f"{blocked/total_scope*100:.1f}% des chaînages" if total_scope else ""
+        f"{blocked / total_scope * 100:.1f}% des chaînages" if total_scope else "",
     )
 with col2:
     rev_impact = blocked / len(df) * 100
@@ -301,7 +340,7 @@ with col3:
     st.metric(
         "Cas problématiques résolus",
         f"{prob_solved}",
-        f"{prob_solved/prob_total*100:.1f}%" if prob_total else "N/A"
+        f"{prob_solved / prob_total * 100:.1f}%" if prob_total else "N/A",
     )
 with col4:
     if blocked:
@@ -315,40 +354,61 @@ thresholds_range = list(range(0, 721, 15))
 sim_data = []
 for t in thresholds_range:
     b = (scope_df["time_delta_with_previous_rental_in_minutes"] < t).sum()
-    s = ((scope_df["time_delta_with_previous_rental_in_minutes"] < t)
-         & scope_df["problematic"]).sum()
-    sim_data.append({
-        "seuil": t,
-        "pct_bloquees": b / total_scope * 100 if total_scope else 0,
-        "pct_resolus": s / prob_total * 100 if prob_total else 0,
-        "ca_impacte": b / len(df) * 100
-    })
+    s = (
+        (scope_df["time_delta_with_previous_rental_in_minutes"] < t)
+        & scope_df["problematic"]
+    ).sum()
+    sim_data.append(
+        {
+            "seuil": t,
+            "pct_bloquees": b / total_scope * 100 if total_scope else 0,
+            "pct_resolus": s / prob_total * 100 if prob_total else 0,
+            "ca_impacte": b / len(df) * 100,
+        }
+    )
 sim_df = pd.DataFrame(sim_data)
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=sim_df["seuil"], y=sim_df["pct_bloquees"],
-    mode="lines+markers", name="% chaînages bloqués",
-    line=dict(color="#ef4444", width=3)
-))
-fig.add_trace(go.Scatter(
-    x=sim_df["seuil"], y=sim_df["pct_resolus"],
-    mode="lines+markers", name="% cas problématiques résolus",
-    line=dict(color="#10b981", width=3)
-))
-fig.add_trace(go.Scatter(
-    x=sim_df["seuil"], y=sim_df["ca_impacte"],
-    mode="lines+markers", name="% du CA total impacté",
-    line=dict(color="#f59e0b", width=3, dash="dash")
-))
-fig.add_vline(x=threshold, line_dash="dot", line_color="black",
-              annotation_text=f"Seuil actuel : {threshold} min",
-              annotation_position="top right")
+fig.add_trace(
+    go.Scatter(
+        x=sim_df["seuil"],
+        y=sim_df["pct_bloquees"],
+        mode="lines+markers",
+        name="% chaînages bloqués",
+        line=dict(color="#ef4444", width=3),
+    )
+)
+fig.add_trace(
+    go.Scatter(
+        x=sim_df["seuil"],
+        y=sim_df["pct_resolus"],
+        mode="lines+markers",
+        name="% cas problématiques résolus",
+        line=dict(color="#10b981", width=3),
+    )
+)
+fig.add_trace(
+    go.Scatter(
+        x=sim_df["seuil"],
+        y=sim_df["ca_impacte"],
+        mode="lines+markers",
+        name="% du CA total impacté",
+        line=dict(color="#f59e0b", width=3, dash="dash"),
+    )
+)
+fig.add_vline(
+    x=threshold,
+    line_dash="dot",
+    line_color="black",
+    annotation_text=f"Seuil actuel : {threshold} min",
+    annotation_position="top right",
+)
 fig.update_layout(
     title=f"Arbitrage : protection vs revenus - {scope_label}",
     xaxis_title="Seuil de délai minimum (minutes)",
     yaxis_title="Pourcentage",
-    template="plotly_white", height=450
+    template="plotly_white",
+    height=450,
 )
 st.plotly_chart(fig, use_container_width=True)
 
@@ -363,15 +423,18 @@ scenarios = [15, 30, 60, 90, 120, 180, 240]
 rows = []
 for t in scenarios:
     row = {"Seuil (min)": t}
-    for sname, sdf in [("Tous", chained_full),
-                       ("Connect", chained_full[chained_full["checkin_type"] == "connect"]),
-                       ("Mobile", chained_full[chained_full["checkin_type"] == "mobile"])]:
+    for sname, sdf in [
+        ("Tous", chained_full),
+        ("Connect", chained_full[chained_full["checkin_type"] == "connect"]),
+        ("Mobile", chained_full[chained_full["checkin_type"] == "mobile"]),
+    ]:
         b = (sdf["time_delta_with_previous_rental_in_minutes"] < t).sum()
-        s = ((sdf["time_delta_with_previous_rental_in_minutes"] < t)
-             & sdf["problematic"]).sum()
+        s = (
+            (sdf["time_delta_with_previous_rental_in_minutes"] < t) & sdf["problematic"]
+        ).sum()
         pt = sdf["problematic"].sum()
         row[f"{sname} - bloqués"] = b
-        row[f"{sname} - % résolus"] = f"{s/pt*100:.1f}%" if pt else "N/A"
+        row[f"{sname} - % résolus"] = f"{s / pt * 100:.1f}%" if pt else "N/A"
     rows.append(row)
 
 st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
@@ -383,7 +446,8 @@ st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 st.markdown("---")
 st.subheader("5. Recommandations")
 
-st.markdown("""
+st.markdown(
+    """
 <div class="section-card">
 
 **Synthèse des analyses**
@@ -399,14 +463,16 @@ st.markdown("""
 **Recommandation produit**
 
 Sur la base de l'arbitrage entre revenus préservés et frictions résolues, un
-seuil de **120 minutes** appliqué à l'ensemble du parc résout environ 80 % des
+seuil de **120 minutes** appliqué à l'ensemble du parc résout environ 83 % des
 cas problématiques tout en n'impactant que ~3 % du chiffre d'affaires. Cette
 combinaison constitue un point d'équilibre raisonnable.
 
-Si l'équipe Produit souhaite minimiser l'impact business, un seuil de **60 à
-90 minutes appliqué uniquement aux voitures Connect** constitue une alternative
-prudente, avec moins de 1 % du CA impacté pour 70 à 80 % des cas problématiques
+Si l'équipe Produit souhaite minimiser l'impact business, un seuil de **60
+minutes appliqué uniquement aux voitures Connect** constitue une alternative
+prudente, avec moins de 1 % du CA impacté pour environ 70 % des cas problématiques
 de ce segment résolus.
 
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
