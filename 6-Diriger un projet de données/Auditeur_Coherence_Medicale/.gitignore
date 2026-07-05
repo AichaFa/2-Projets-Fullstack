@@ -33,3 +33,13 @@ env/
 Thumbs.db
 .vscode/
 .idea/
+
+# Fichiers de démonstration et de reconstitution locale
+commandes_demonstration.txt
+mlflow_auditeur_local.py
+mlflow_auditeur.db
+mlflow_auditeur.db-wal
+mlflow_auditeur.db-shm
+mlartifacts/
+mlruns/
+Images_MLFlow/
