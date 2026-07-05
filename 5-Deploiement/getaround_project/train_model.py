@@ -108,6 +108,10 @@ def main():
             r2 = r2_score(y_test, preds)
 
             mlflow.log_param('model', name)
+            # Trace l'ensemble des hyperparamètres du modèle en cours
+            # (n_estimators, max_depth, learning_rate, etc.) pour rendre
+            # chaque exécution reproductible et auditable.
+            mlflow.log_params(m.get_params())
             mlflow.log_metric('test_mae', mae)
             mlflow.log_metric('test_rmse', rmse)
             mlflow.log_metric('test_r2', r2)
