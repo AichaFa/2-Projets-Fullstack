@@ -164,12 +164,12 @@ Le notebook détecte automatiquement le dossier `data/` quel que soit son emplac
 python train_model.py
 ```
 
-Le modèle est sauvegardé dans `models/best_model.joblib` et le pipeline est tracé dans `mlruns/`.
+Le modèle est sauvegardé dans `models/best_model.joblib` et les expériences sont tracées avec MLflow (hyperparamètres, métriques et modèle sérialisé) dans la base `mlflow.db`.
 
 ### MLflow UI
 
 ```bash
-mlflow ui --backend-store-uri file:./mlruns
+python -m mlflow ui --backend-store-uri sqlite:///mlflow.db
 ```
 
 Interface accessible sur `http://localhost:5000`.
